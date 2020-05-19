@@ -2,6 +2,7 @@
 #pragma warning disable CS1591
 
 using System;
+using MediaBrowser.Model.Extensions;
 
 namespace MediaBrowser.Model.Services
 {
@@ -9,12 +10,11 @@ namespace MediaBrowser.Model.Services
     public class RouteAttribute : Attribute
     {
         /// <summary>
-        ///     <para>Initializes an instance of the <see cref="RouteAttribute"/> class.</para>
+        /// Initializes a new instance of the <see cref="RouteAttribute"/> class.
         /// </summary>
         /// <param name="path">
-        ///     <para>The path template to map to the request.  See
-        ///        <see cref="Path">RouteAttribute.Path</see>
-        ///        for details on the correct format.</para>
+        /// The path template to map to the request.  See <see cref="Path">RouteAttribute.Path</see>
+        /// for details on the correct format.
         /// </param>
         public RouteAttribute(string path)
             : this(path, null)
@@ -22,12 +22,11 @@ namespace MediaBrowser.Model.Services
         }
 
         /// <summary>
-        ///     <para>Initializes an instance of the <see cref="RouteAttribute"/> class.</para>
+        /// Initializes a new instance of the <see cref="RouteAttribute"/> class.
         /// </summary>
         /// <param name="path">
-        ///     <para>The path template to map to the request.  See
-        ///         <see cref="Path">RouteAttribute.Path</see>
-        ///         for details on the correct format.</para>
+        /// The path template to map to the request. See <see cref="Path">RouteAttribute.Path</see>
+        /// for details on the correct format.
         /// </param>
         /// <param name="verbs">A comma-delimited list of HTTP verbs supported by the
         ///     service.  If unspecified, all verbs are assumed to be supported.</param>
@@ -41,7 +40,7 @@ namespace MediaBrowser.Model.Services
         ///     Gets or sets the path template to be mapped to the request.
         /// </summary>
         /// <value>
-        ///     A <see cref="String"/> value providing the path mapped to
+        ///     A <see cref="string"/> value providing the path mapped to
         ///     the request.  Never <see langword="null"/>.
         /// </value>
         /// <remarks>
@@ -105,13 +104,13 @@ namespace MediaBrowser.Model.Services
         ///     "GET,PUT,POST,DELETE".
         /// </summary>
         /// <value>
-        ///     A <see cref="String"/> providing a comma-delimited list of HTTP verbs supported
+        ///     A <see cref="string"/> providing a comma-delimited list of HTTP verbs supported
         ///     by the service, <see langword="null"/> or empty if all verbs are supported.
         /// </value>
         public string Verbs { get; set; }
 
         /// <summary>
-        /// Used to rank the precedences of route definitions in reverse routing.
+        /// Gets or sets the rank the precedences of route definitions in reverse routing.
         /// i.e. Priorities below 0 are auto-generated have less precedence.
         /// </summary>
         public int Priority { get; set; }
@@ -119,18 +118,30 @@ namespace MediaBrowser.Model.Services
         protected bool Equals(RouteAttribute other)
         {
             return base.Equals(other)
-                && string.Equals(Path, other.Path)
-                && string.Equals(Summary, other.Summary)
-                && string.Equals(Notes, other.Notes)
-                && string.Equals(Verbs, other.Verbs)
+                && string.Equals(Path, other.Path, StringComparison.Ordinal)
+                && string.Equals(Summary, other.Summary, StringComparison.Ordinal)
+                && string.Equals(Notes, other.Notes, StringComparison.Ordinal)
+                && string.Equals(Verbs, other.Verbs, StringComparison.Ordinal)
                 && Priority == other.Priority;
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
             return Equals((RouteAttribute)obj);
         }
 
@@ -139,10 +150,10 @@ namespace MediaBrowser.Model.Services
             unchecked
             {
                 var hashCode = base.GetHashCode();
-                hashCode = (hashCode * 397) ^ (Path != null ? Path.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (Summary != null ? Summary.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (Notes != null ? Notes.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (Verbs != null ? Verbs.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Path.CGetHashCode();
+                hashCode = (hashCode * 397) ^ Summary.CGetHashCode();
+                hashCode = (hashCode * 397) ^ Notes.CGetHashCode();
+                hashCode = (hashCode * 397) ^ Verbs.CGetHashCode();
                 hashCode = (hashCode * 397) ^ Priority;
                 return hashCode;
             }

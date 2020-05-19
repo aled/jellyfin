@@ -1,5 +1,6 @@
 #nullable disable
 #pragma warning disable CS1591
+#pragma warning disable CA1819 // Properties should not return arrays
 
 using System;
 using MediaBrowser.Model.Dto;
@@ -34,20 +35,20 @@ namespace MediaBrowser.Model.Dlna
         public DeviceProfile Profile { get; set; }
 
         /// <summary>
-        /// Optional. Only needed if a specific AudioStreamIndex or SubtitleStreamIndex are requested.
+        /// Gets or sets media source id. Only needed if a specific AudioStreamIndex or SubtitleStreamIndex are requested.
         /// </summary>
         public string MediaSourceId { get; set; }
 
         public string DeviceId { get; set; }
 
         /// <summary>
-        /// Allows an override of supported number of audio channels
-        /// Example: DeviceProfile supports five channel, but user only has stereo speakers
+        /// Gets or sets override of supported number of audio channels
+        /// Example: DeviceProfile supports five channel, but user only has stereo speakers.
         /// </summary>
         public int? MaxAudioChannels { get; set; }
 
         /// <summary>
-        /// The application's configured quality setting
+        /// Gets or sets the application's configured quality setting.
         /// </summary>
         public long? MaxBitrate { get; set; }
 
@@ -66,8 +67,9 @@ namespace MediaBrowser.Model.Dlna
         /// <summary>
         /// Gets the maximum bitrate.
         /// </summary>
+        /// <param name="isAudio">is audio.</param>
         /// <returns>System.Nullable&lt;System.Int32&gt;.</returns>
-        public long? GetMaxBitrate(bool isAudio)
+        public long? CalculateMaxBitrate(bool isAudio)
         {
             if (MaxBitrate.HasValue)
             {
@@ -85,6 +87,7 @@ namespace MediaBrowser.Model.Dlna
                 {
                     return Profile.MaxStaticMusicBitrate;
                 }
+
                 return Profile.MaxStaticBitrate;
             }
 

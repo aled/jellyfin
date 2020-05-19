@@ -1,5 +1,6 @@
 #nullable disable
 #pragma warning disable CS1591
+#pragma warning disable CA1819 // Properties should not return arrays
 
 using System;
 
@@ -7,6 +8,13 @@ namespace MediaBrowser.Model.Querying
 {
     public class MovieRecommendationQuery
     {
+        public MovieRecommendationQuery()
+        {
+            ItemLimit = 10;
+            CategoryLimit = 6;
+            Fields = Array.Empty<ItemField>();
+        }
+
         /// <summary>
         /// Gets or sets the user identifier.
         /// </summary>
@@ -35,13 +43,6 @@ namespace MediaBrowser.Model.Querying
         /// Gets or sets the fields.
         /// </summary>
         /// <value>The fields.</value>
-        public ItemFields[] Fields { get; set; }
-
-        public MovieRecommendationQuery()
-        {
-            ItemLimit = 10;
-            CategoryLimit = 6;
-            Fields = Array.Empty<ItemFields>();
-        }
+        public ItemField[] Fields { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 #nullable disable
 #pragma warning disable CS1591
+#pragma warning disable CA1819 // Properties should not return arrays
 
 using System;
 
@@ -7,6 +8,13 @@ namespace MediaBrowser.Model.Channels
 {
     public class ChannelFeatures
     {
+        public ChannelFeatures()
+        {
+            MediaTypes = Array.Empty<ChannelMediaType>();
+            ContentTypes = Array.Empty<ChannelMediaContentType>();
+            DefaultSortFields = Array.Empty<ChannelItemSortField>();
+        }
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -38,7 +46,7 @@ namespace MediaBrowser.Model.Channels
         public ChannelMediaContentType[] ContentTypes { get; set; }
 
         /// <summary>
-        /// Represents the maximum number of records the channel allows retrieving at a time
+        /// Gets or sets the maximum number of records the channel allows retrieving at a time.
         /// </summary>
         public int? MaxPageSize { get; set; }
 
@@ -55,7 +63,7 @@ namespace MediaBrowser.Model.Channels
         public ChannelItemSortField[] DefaultSortFields { get; set; }
 
         /// <summary>
-        /// Indicates if a sort ascending/descending toggle is supported or not.
+        /// Gets or sets a value indicating whether a sort ascending/descending toggle is supported or not.
         /// </summary>
         public bool SupportsSortOrderToggle { get; set; }
 
@@ -76,12 +84,5 @@ namespace MediaBrowser.Model.Channels
         /// </summary>
         /// <value><c>true</c> if [supports content downloading]; otherwise, <c>false</c>.</value>
         public bool SupportsContentDownloading { get; set; }
-
-        public ChannelFeatures()
-        {
-            MediaTypes = Array.Empty<ChannelMediaType>();
-            ContentTypes = Array.Empty<ChannelMediaContentType>();
-            DefaultSortFields = Array.Empty<ChannelItemSortField>();
-        }
     }
 }

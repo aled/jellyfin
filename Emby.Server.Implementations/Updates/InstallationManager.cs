@@ -172,12 +172,12 @@ namespace Emby.Server.Implementations.Updates
         {
             if (name != null)
             {
-                availablePackages = availablePackages.Where(x => x.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+                availablePackages = availablePackages.Where(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
             }
 
             if (guid != Guid.Empty)
             {
-                availablePackages = availablePackages.Where(x => Guid.Parse(x.guid) == guid);
+                availablePackages = availablePackages.Where(x => Guid.Parse(x.AssemblyGuid) == guid);
             }
 
             return availablePackages;
@@ -199,7 +199,7 @@ namespace Emby.Server.Implementations.Updates
             }
 
             var appVer = _applicationHost.ApplicationVersion;
-            var availableVersions = package.versions
+            var availableVersions = package.Versions
                 .Where(x => Version.Parse(x.targetAbi) <= appVer);
 
             if (minVersion != null)
@@ -212,8 +212,8 @@ namespace Emby.Server.Implementations.Updates
                 yield return new InstallationInfo
                 {
                     Changelog = v.changelog,
-                    Guid = new Guid(package.guid),
-                    Name = package.name,
+                    Guid = new Guid(package.AssemblyGuid),
+                    Name = package.Name,
                     Version = new Version(v.version),
                     SourceUrl = v.sourceUrl,
                     Checksum = v.checksum

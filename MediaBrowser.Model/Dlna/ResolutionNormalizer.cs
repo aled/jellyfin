@@ -1,11 +1,12 @@
 #nullable disable
 #pragma warning disable CS1591
+#pragma warning disable CA1801
 
 using System;
 
 namespace MediaBrowser.Model.Dlna
 {
-    public class ResolutionNormalizer
+    public static class ResolutionNormalizer
     {
         private static readonly ResolutionConfiguration[] Configurations =
             new[]

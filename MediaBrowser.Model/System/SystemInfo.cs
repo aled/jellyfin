@@ -1,5 +1,6 @@
 #nullable disable
 #pragma warning disable CS1591
+#pragma warning disable CA1819 // Properties should not return arrays
 
 using System;
 using System.Runtime.InteropServices;
@@ -14,19 +15,30 @@ namespace MediaBrowser.Model.System
     {
         /// <summary>No path to FFmpeg found.</summary>
         NotFound,
+
         /// <summary>Path supplied via command line using switch --ffmpeg.</summary>
         SetByArgument,
+
         /// <summary>User has supplied path via Transcoding UI page.</summary>
         Custom,
+
         /// <summary>FFmpeg tool found on system $PATH.</summary>
         System
-    };
+    }
 
     /// <summary>
-    /// Class SystemInfo
+    /// Class SystemInfo.
     /// </summary>
     public class SystemInfo : PublicSystemInfo
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SystemInfo" /> class.
+        /// </summary>
+        public SystemInfo()
+        {
+            CompletedInstallations = Array.Empty<InstallationInfo>();
+        }
+
         /// <summary>
         /// Gets or sets the display name of the operating system.
         /// </summary>
@@ -34,7 +46,7 @@ namespace MediaBrowser.Model.System
         public string OperatingSystemDisplayName { get; set; }
 
         /// <summary>
-        /// Get or sets the package name.
+        /// Gets or sets the package name.
         /// </summary>
         /// <value>The value of the '-package' command line argument.</value>
         public string PackageName { get; set; }
@@ -124,13 +136,5 @@ namespace MediaBrowser.Model.System
         public FFmpegLocation EncoderLocation { get; set; }
 
         public Architecture SystemArchitecture { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SystemInfo" /> class.
-        /// </summary>
-        public SystemInfo()
-        {
-            CompletedInstallations = Array.Empty<InstallationInfo>();
-        }
     }
 }

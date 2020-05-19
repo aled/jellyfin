@@ -1,5 +1,6 @@
 #nullable disable
 #pragma warning disable CS1591
+#pragma warning disable CA1819 // Properties should not return arrays
 
 using System;
 
@@ -7,6 +8,11 @@ namespace MediaBrowser.Model.Dlna
 {
     public class DeviceIdentification
     {
+        public DeviceIdentification()
+        {
+            Headers = Array.Empty<HttpHeaderInfo>();
+        }
+
         /// <summary>
         /// Gets or sets the name of the friendly.
         /// </summary>
@@ -66,10 +72,5 @@ namespace MediaBrowser.Model.Dlna
         /// </summary>
         /// <value>The headers.</value>
         public HttpHeaderInfo[] Headers { get; set; }
-
-        public DeviceIdentification()
-        {
-            Headers = Array.Empty<HttpHeaderInfo>();
-        }
     }
 }

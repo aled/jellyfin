@@ -13,7 +13,7 @@ namespace MediaBrowser.Model.Channels
         /// Fields to return within the items, in addition to basic information
         /// </summary>
         /// <value>The fields.</value>
-        public ItemFields[] Fields { get; set; }
+        public ItemField[] Fields { get; set; }
 
         public bool? EnableImages { get; set; }
 

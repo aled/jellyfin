@@ -1,5 +1,6 @@
 #nullable disable
 #pragma warning disable CS1591
+#pragma warning disable CA1819 // Properties should not return arrays
 
 using System;
 
@@ -7,6 +8,11 @@ namespace MediaBrowser.Model.Sync
 {
     public class SyncJob
     {
+        public SyncJob()
+        {
+            RequestedItemIds = Array.Empty<Guid>();
+        }
+
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
@@ -122,12 +128,9 @@ namespace MediaBrowser.Model.Sync
         public int ItemCount { get; set; }
 
         public string ParentName { get; set; }
-        public string PrimaryImageItemId { get; set; }
-        public string PrimaryImageTag { get; set; }
 
-        public SyncJob()
-        {
-            RequestedItemIds = Array.Empty<Guid>();
-        }
+        public string PrimaryImageItemId { get; set; }
+
+        public string PrimaryImageTag { get; set; }
     }
 }

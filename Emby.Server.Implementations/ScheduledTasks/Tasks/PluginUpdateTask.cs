@@ -53,7 +53,7 @@ namespace Emby.Server.Implementations.ScheduledTasks
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <param name="progress">The progress.</param>
         /// <returns><see cref="Task" />.</returns>
-        public async Task Execute(CancellationToken cancellationToken, IProgress<double> progress)
+        public async Task Execute(IProgress<double> progress, CancellationToken cancellationToken)
         {
             progress.Report(0);
 

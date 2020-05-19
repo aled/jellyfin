@@ -23,6 +23,12 @@ namespace MediaBrowser.Model.Net
         /// <summary>
         /// Sends a UDP message to a particular end point (uni or multicast).
         /// </summary>
+        /// <param name="buffer">Buffer.</param>
+        /// <param name="offset">Offset.</param>
+        /// <param name="bytes">Bytes.</param>
+        /// <param name="endPoint">Endpoint.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         Task SendToAsync(byte[] buffer, int offset, int bytes, IPEndPoint endPoint, CancellationToken cancellationToken);
     }
 }

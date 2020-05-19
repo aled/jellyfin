@@ -1,5 +1,6 @@
 #nullable disable
 #pragma warning disable CS1591
+#pragma warning disable CA1819 // Properties should not return arrays
 
 using System;
 
@@ -7,6 +8,11 @@ namespace MediaBrowser.Model.Querying
 {
     public class EpisodeQuery
     {
+        public EpisodeQuery()
+        {
+            Fields = Array.Empty<ItemField>();
+        }
+
         /// <summary>
         /// Gets or sets the user identifier.
         /// </summary>
@@ -47,7 +53,7 @@ namespace MediaBrowser.Model.Querying
         /// Gets or sets the fields.
         /// </summary>
         /// <value>The fields.</value>
-        public ItemFields[] Fields { get; set; }
+        public ItemField[] Fields { get; set; }
 
         /// <summary>
         /// Gets or sets the start index.
@@ -66,10 +72,5 @@ namespace MediaBrowser.Model.Querying
         /// </summary>
         /// <value>The start item identifier.</value>
         public string StartItemId { get; set; }
-
-        public EpisodeQuery()
-        {
-            Fields = Array.Empty<ItemFields>();
-        }
     }
 }

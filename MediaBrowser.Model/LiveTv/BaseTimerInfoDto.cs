@@ -1,5 +1,6 @@
 #nullable disable
 #pragma warning disable CS1591
+#pragma warning disable CA1819 // Properties should not return arrays
 
 using System;
 using MediaBrowser.Model.Dto;
@@ -9,7 +10,7 @@ namespace MediaBrowser.Model.LiveTv
     public class BaseTimerInfoDto : IHasServerId
     {
         /// <summary>
-        /// Id of the recording.
+        /// Gets or sets id of the recording.
         /// </summary>
         public string Id { get; set; }
 
@@ -28,7 +29,7 @@ namespace MediaBrowser.Model.LiveTv
         public string ExternalId { get; set; }
 
         /// <summary>
-        /// ChannelId of the recording.
+        /// Gets or sets channelId of the recording.
         /// </summary>
         public Guid ChannelId { get; set; }
 
@@ -39,7 +40,7 @@ namespace MediaBrowser.Model.LiveTv
         public string ExternalChannelId { get; set; }
 
         /// <summary>
-        /// ChannelName of the recording.
+        /// Gets or sets channelName of the recording.
         /// </summary>
         public string ChannelName { get; set; }
 
@@ -58,22 +59,22 @@ namespace MediaBrowser.Model.LiveTv
         public string ExternalProgramId { get; set; }
 
         /// <summary>
-        /// Name of the recording.
+        /// Gets or sets name of the recording.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Description of the recording.
+        /// Gets or sets description of the recording.
         /// </summary>
         public string Overview { get; set; }
 
         /// <summary>
-        /// The start date of the recording, in UTC.
+        /// Gets or sets the start date of the recording, in UTC.
         /// </summary>
         public DateTime StartDate { get; set; }
 
         /// <summary>
-        /// The end date of the recording, in UTC.
+        /// Gets or sets the end date of the recording, in UTC.
         /// </summary>
         public DateTime EndDate { get; set; }
 
@@ -108,7 +109,7 @@ namespace MediaBrowser.Model.LiveTv
         public bool IsPrePaddingRequired { get; set; }
 
         /// <summary>
-        /// If the item does not have any backdrops, this will hold the Id of the Parent that has one.
+        /// Gets or sets if the item does not have any backdrops, this will hold the Id of the Parent that has one.
         /// </summary>
         /// <value>The parent backdrop item id.</value>
         public string ParentBackdropItemId { get; set; }
@@ -124,6 +125,7 @@ namespace MediaBrowser.Model.LiveTv
         /// </summary>
         /// <value><c>true</c> if this instance is post padding required; otherwise, <c>false</c>.</value>
         public bool IsPostPaddingRequired { get; set; }
+
         public KeepUntil KeepUntil { get; set; }
     }
 }

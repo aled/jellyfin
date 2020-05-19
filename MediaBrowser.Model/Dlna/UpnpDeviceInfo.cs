@@ -1,5 +1,6 @@
 #nullable disable
 #pragma warning disable CS1591
+#pragma warning disable CA2227 // Collection properties should be read only
 
 using System;
 using System.Collections.Generic;

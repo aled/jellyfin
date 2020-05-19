@@ -1,7 +1,9 @@
 #nullable disable
 #pragma warning disable CS1591
+#pragma warning disable CA1819 // Properties should not return arrays
 
 using System;
+using System.Globalization;
 using System.Linq;
 using MediaBrowser.Model.Users;
 
@@ -9,8 +11,6 @@ namespace MediaBrowser.Model.Notifications
 {
     public class NotificationOptions
     {
-        public NotificationOption[] Options { get; set; }
-
         public NotificationOptions()
         {
             Options = new[]
@@ -68,7 +68,9 @@ namespace MediaBrowser.Model.Notifications
             };
         }
 
-        public NotificationOption GetOptions(string type)
+        public NotificationOption[] Options { get; set; }
+
+        public NotificationOption GetOptionsOfType(string type)
         {
             foreach (NotificationOption i in Options)
             {
@@ -83,14 +85,14 @@ namespace MediaBrowser.Model.Notifications
 
         public bool IsEnabled(string type)
         {
-            NotificationOption opt = GetOptions(type);
+            NotificationOption opt = GetOptionsOfType(type);
 
             return opt != null && opt.Enabled;
         }
 
         public bool IsServiceEnabled(string service, string notificationType)
         {
-            NotificationOption opt = GetOptions(notificationType);
+            NotificationOption opt = GetOptionsOfType(notificationType);
 
             return opt == null ||
                    !opt.DisabledServices.Contains(service, StringComparer.OrdinalIgnoreCase);
@@ -98,15 +100,15 @@ namespace MediaBrowser.Model.Notifications
 
         public bool IsEnabledToMonitorUser(string type, Guid userId)
         {
-            NotificationOption opt = GetOptions(type);
+            NotificationOption opt = GetOptionsOfType(type);
 
             return opt != null && opt.Enabled &&
-                   !opt.DisabledMonitorUsers.Contains(userId.ToString(""), StringComparer.OrdinalIgnoreCase);
+                   !opt.DisabledMonitorUsers.Contains(userId.ToString(string.Empty, CultureInfo.InvariantCulture), StringComparer.OrdinalIgnoreCase);
         }
 
         public bool IsEnabledToSendToUser(string type, string userId, UserPolicy userPolicy)
         {
-            NotificationOption opt = GetOptions(type);
+            NotificationOption opt = GetOptionsOfType(type);
 
             if (opt != null && opt.Enabled)
             {

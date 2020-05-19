@@ -41,7 +41,7 @@ namespace MediaBrowser.Model.Querying
         /// Fields to return within the items, in addition to basic information.
         /// </summary>
         /// <value>The fields.</value>
-        public ItemFields[] Fields { get; set; }
+        public ItemField[] Fields { get; set; }
 
         /// <summary>
         /// Gets or sets the include item types.

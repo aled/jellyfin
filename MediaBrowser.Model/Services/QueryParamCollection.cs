@@ -15,6 +15,33 @@ namespace MediaBrowser.Model.Services
         {
         }
 
+        public IEnumerable<string> Keys
+        {
+            get
+            {
+                var keys = new string[this.Count];
+
+                for (var i = 0; i < keys.Length; i++)
+                {
+                    keys[i] = this[i].Name;
+                }
+
+                return keys;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a query parameter value by name. A query may contain multiple values of the same name
+        /// (i.e. "x=1&amp;x=2"), in which case the value is an array, which works for both getting and setting.
+        /// </summary>
+        /// <param name="name">The query parameter name.</param>
+        /// <returns>The query parameter value or array of values.</returns>
+        public string this[string name]
+        {
+            get => Get(name);
+            set => Set(name, value);
+        }
+
         private static StringComparison GetStringComparison()
         {
             return StringComparison.OrdinalIgnoreCase;
@@ -23,6 +50,8 @@ namespace MediaBrowser.Model.Services
         /// <summary>
         /// Adds a new query parameter.
         /// </summary>
+        /// <param name="key">Key.</param>
+        /// <param name="value">Value.</param>
         public void Add(string key, string value)
         {
             Add(new NameValuePair(key, value));
@@ -103,33 +132,6 @@ namespace MediaBrowser.Model.Services
             }
 
             return list;
-        }
-
-        public IEnumerable<string> Keys
-        {
-            get
-            {
-                var keys = new string[this.Count];
-
-                for (var i = 0; i < keys.Length; i++)
-                {
-                    keys[i] = this[i].Name;
-                }
-
-                return keys;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a query parameter value by name. A query may contain multiple values of the same name
-        /// (i.e. "x=1&amp;x=2"), in which case the value is an array, which works for both getting and setting.
-        /// </summary>
-        /// <param name="name">The query parameter name</param>
-        /// <returns>The query parameter value or array of values</returns>
-        public string this[string name]
-        {
-            get => Get(name);
-            set => Set(name, value);
         }
 
         private string GetQueryStringValue(NameValuePair pair)
