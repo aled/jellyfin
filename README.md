@@ -116,6 +116,9 @@ The following instructions will help you get the project up and running via the 
 
 #### Running With Visual Studio
 
+ffmpeg is required; download from https://ffmpeg.zeranoe.com/builds/win64/static/${FFMPEG_VERSION}.zip (see build.windows.amd64 for exact version).
+Ensure ffmpeg.exe and ffprobe.exe are in the bin folder.
+
 To run the project with Visual Studio you can open the Solution (`.sln`) file and then press `F5` to run the server.
 
 #### Running With Visual Studio Code
