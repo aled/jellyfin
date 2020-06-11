@@ -78,7 +78,7 @@ namespace MediaBrowser.Model.Entities
         public string Title { get; set; }
 
         /// <summary>
-        /// Gets or sets the video range.
+        /// Gets the video range.
         /// </summary>
         /// <value>The video range.</value>
         public string VideoRange

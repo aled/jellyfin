@@ -4,6 +4,9 @@
   <PropertyGroup>
     <ProjectGuid>{805844AB-E92F-45E6-9D99-4F6D48D129A5}</ProjectGuid>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Profiles\Xml\Sony SA-NS510.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="..\SharedVersion.cs" />
@@ -20,7 +23,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <TreatWarningsAsErrors Condition=" '$(Configuration)' == 'Release'" >true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors Condition=" '$(Configuration)' == 'Release'">true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <!-- Code Analyzers-->
@@ -56,6 +59,7 @@
     <EmbeddedResource Include="Profiles\Xml\foobar2000.xml" />
     <EmbeddedResource Include="Profiles\Xml\LG Smart TV.xml" />
     <EmbeddedResource Include="Profiles\Xml\Linksys DMA2100.xml" />
+    <EmbeddedResource Include="Profiles\Xml\Sony SA-NS510.xml" />
     <EmbeddedResource Include="Profiles\Xml\Marantz.xml" />
     <EmbeddedResource Include="Profiles\Xml\MediaMonkey.xml" />
     <EmbeddedResource Include="Profiles\Xml\Panasonic Viera.xml" />
